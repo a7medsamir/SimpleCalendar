@@ -1,0 +1,69 @@
+﻿
+@{
+    ViewBag.Title = "Calendar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Calendar</h2>
+
+<div class="panel panel-default" ng-controller="calendarController">
+    <div class="panel-body">
+        <p>
+            Choose your month:
+        </p>
+        <div class="btn-group" role="group">
+            <button type="button" class="btn btn-default" ng-repeat="month  in Months" ng-click="showMonthAppointments($index+1)">
+                {{month}}
+            </button>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-sm-6" style="margin-top: 20px;">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Appointments</div>
+                    <div class="panel-body">
+                        <ul ng-if="Appointments.length>0">
+                            <li ng-repeat="appointment  in Appointments">
+                                {{appointment.Date | date:'MM/dd/yyyy h:mma'}} <a href="#" ng-click="showAppointmentDetails(appointment)">{{appointment.Description}}</a>
+                            </li>
+                        </ul>
+                        <p ng-if="Appointments.length<=0">There is not any appointment for this month</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6" ng-if="SelectedAppointment" style="margin-top: 20px;">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Appointment Details</div>
+                    <div class="panel-body">
+                        <ul>
+                            <li>
+                                Description: {{SelectedAppointment.Description}}
+                            </li>
+                            <li>
+                                Date: {{SelectedAppointment.Date | date:'MM/dd/yyyy h:mma'}}
+                            </li>
+                            <li>
+                                Organizer: {{SelectedAppointment.Organizer}}
+                            </li>
+                            <li>
+                                Subject: {{SelectedAppointment.Subject}}
+                            </li>
+                            <li>
+                                Attendees:
+                                <ul>
+                                    <li ng-repeat="Attendee  in SelectedAppointment.Attendees">
+                                        {{Attendee.Name}}
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script src="~/Scripts/angular.js"></script>
+<script src="~/Scripts/app/Module.js"></script>
+<script src="~/Scripts/app/Service.js"></script>
+<script src="~/Scripts/app/Controller.js"></script>
