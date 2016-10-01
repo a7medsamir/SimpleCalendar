@@ -12,7 +12,8 @@
             Choose your month:
         </p>
         <div class="btn-group" role="group">
-            <button type="button" class="btn btn-default" ng-repeat="month  in Months" ng-click="showMonthAppointments($index+1)">
+            <button type="button" class="btn btn-default" ng-repeat="month  in Months" ng-click="showMonthAppointments($index+1)"
+             ng-class="{'active': ($index+1) == SelectedMonth}">
                 {{month}}
             </button>
         </div>

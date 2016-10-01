@@ -1,4 +1,4 @@
-namespace SimpleCalendar.Models
+namespace SimpleCalendarDataAccess
 {
     using System;
     using System.Data.Entity;
@@ -8,7 +8,7 @@ namespace SimpleCalendar.Models
     public partial class DatabaseEntities : DbContext
     {
         public DatabaseEntities()
-            : base("name=DatabaseEntities")
+            : base("name=DatabaseEntitiesConnection")
         {
         }
 
